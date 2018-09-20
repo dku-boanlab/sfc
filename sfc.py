@@ -64,12 +64,7 @@ case = list_VNFs.split(",")
 print "Service chain: ", case
 
 # make the resources of VNFs
-cpus, mems = vnf_mgmt.make_resources_VNFs(config, case)
-
-print cpus
-print mems
-
-exit(0)
+cpu, mem = vnf_mgmt.make_resources_VNFs(config, case)
 
 # get cpuset of VNFs
 cpuset = vnf_mgmt.get_cpuset_of_VNFs(cpu, case)
