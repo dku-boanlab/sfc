@@ -17,12 +17,7 @@ def load_VNF_configurations(conf_file):
             config[name] = {}
 
             config[name]["name"] = str(name) # VNF name in a configuration
-            config[name]["instance"] = "" # VNF name in a NFV platform
-
             config[name]["type"] = str(data[name]["type"]) # passive or inline
-
-            config[name]["pid"] = "" # process ID
-            config[name]["uuid"] = "" # instance ID
 
             config[name]["net0"] = "" # mgmt virtual interface
             config[name]["net1"] = "" # inbound virtual interface
@@ -53,17 +48,10 @@ def update_VNF_configurations(config):
 
         for entry in vnf['cmdline']:
             if "qemu-system-x86_64" in entry or "qemu-kvm" in entry:
-                uuid = vnf['cmdline'][vnf['cmdline'].index('-uuid') + 1]
                 name = vnf['cmdline'][vnf['cmdline'].index('-name') + 1]
-
                 if name not in config:
                     print "%s is not in the VNF configurations" % (name)
                     continue
-
-                config[name]["instance"] = name
-
-                config[name]["pid"] = vnf['pid']
-                config[name]["uuid"] = uuid
 
                 for entry in vnf['cmdline']:
                     if "id=net" in entry:
@@ -75,7 +63,7 @@ def update_VNF_configurations(config):
                         mac_option = options[3]
                         mac = mac_option.split("=")[1]
 
-                        cmd = "virsh domiflist " + instance + " | grep " + mac + " | awk '{print $1}'"
+                        cmd = "virsh domiflist " + name + " | grep " + mac + " | awk '{print $1}'"
                         res = subprocess.check_output(cmd, shell=True)
                         intf = res.rstrip()
 
@@ -113,7 +101,9 @@ def make_resources_VNFs(g_config, config, VNFs):
             for cpu in cpu_list:
                 loop_cnt = pow(len(cpu_list), len(VNFs) - idx - 1)
                 for loop in range(loop_cnt):
-                    cpus[cpus_idx][idx] = cpu
+                    vnf_cpu = config[VNFs[idx]]["cpu"].split(',')
+                    if cpu in vnf_cpu:
+                        cpus[cpus_idx][idx] = cpu
                     cpus_idx += 1
 
     final_cpus = []
@@ -136,7 +126,9 @@ def make_resources_VNFs(g_config, config, VNFs):
             for mem in mem_list:
                 loop_cnt = pow(len(mem_list), len(VNFs) - idx - 1)
                 for loop in range(loop_cnt):
-                    mems[mems_idx][idx] = mem
+                    vnf_mem = config[VNFs[idx]]["mem"].split(',')
+                    if mem in vnf_mem:
+                        mems[mems_idx][idx] = mem
                     mems_idx += 1
 
     final_mems = []
@@ -288,6 +280,8 @@ def stop_applications_in_VNFs(config, VNFs):
     return
 
 def get_port_from_intf(interface):
+    print interface
+
     cmd = "util/port-map.sh | grep " + interface + " | awk '{print $2}' | head -n 1"
     res = subprocess.check_output(cmd, shell=True)
     return res.rstrip()

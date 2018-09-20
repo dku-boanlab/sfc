@@ -35,10 +35,6 @@ print "Loaded global configurations"
 config = vnf_mgmt.load_VNF_configurations("config/vnf.conf")
 print "Loaded VNF configurations"
 
-# update VNF configurations
-config = vnf_mgmt.update_VNF_configurations(config)
-print "Updated VNF configurations"
-
 # get the list of VNFs
 VNFs = vnf_mgmt.get_the_list_of_VNFs(config)
 print "Available VNFs in the config file: ", VNFs
@@ -59,39 +55,40 @@ for vnf in list_VNFs.split(","):
         print "Error: no " + vnf
         exit(0)
 
-case = list_VNFs.split(",")
+chain = list_VNFs.split(",")
 
-print "Service chain: ", case
+print "Service chain: ", chain
 
 # make the resources of VNFs
-cpus, mems = vnf_mgmt.make_resources_VNFs(config, case)
+cpus, mems = vnf_mgmt.make_resources_VNFs(g_config, config, chain)
 
 # get cpuset of VNFs
-cpuset = vnf_mgmt.get_cpuset_of_VNFs(cpu, case)
+cpuset = vnf_mgmt.get_cpuset_of_VNFs(cpus[0], chain)
 
 # set cpus of VNFs
-vnf_mgmt.set_cpus_of_VNFs(cpu, cpuset, case)
+vnf_mgmt.set_cpus_of_VNFs(cpus[0], cpuset, chain)
 
 # set memories of VNFs
-vnf_mgmt.set_mems_of_VNFs(mem, case)
-
-# print the info of VNFs
-for idx in range(len(case)):
-    print case[idx], cpu[idx], mem[idx],
-    print
+vnf_mgmt.set_mems_of_VNFs(mems[0], chain)
 
 # launch VNFs
-vnf_mgmt.power_on_VNFs(config, VNFs)
+vnf_mgmt.power_on_VNFs(config, chain)
 print "Turned on VNFs"
 
+# update VNF configurations
+config = vnf_mgmt.update_VNF_configurations(config)
+print "Updated VNF configurations"
+
 # start applications
-vnf_mgmt.start_applications_in_VNFs(config, VNFs)
+vnf_mgmt.start_applications_in_VNFs(config, chain)
 print "Executed applications in VNFs"
 
 # generate flow rules
-rules = vnf_mgmt.make_the_chain_of_VNFs(config, VNFs)
+rules = vnf_mgmt.make_the_chain_of_VNFs(config, chain)
 print "Made flow rules for the chain of VNFs"
 
 # add the flow rules
 vnf_mgmt.apply_the_chain_of_VNFs(rules)
 print "Applied the flow rules for the chain"
+
+print "ALL DONE!"
