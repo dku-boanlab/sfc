@@ -33,7 +33,7 @@ $ virt-manager
 - Make sure that the name of new VMs are the same with the above ones (case-sensitive)
 - Use Ubuntu 16.04  
 - Add two interfaces (attached to ovsbr0)  
-- Statically Set the IP address of the first interface (ens3)
+- Statically set the IP address of the first interface (ens3)
 - (firewall: 192.168.254.11, netsniff-ng: 192.168.254.12, snort-ids: 192.168.254.13)  
 - (suricata-ids: 192.168.254.14, suricata-ips: 192.168.254.15, tcpdump: 192.168.254.16, NAT: 192.168.254.17)  
 
