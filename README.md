@@ -41,10 +41,10 @@ $ virt-manager
 - During installation, statically set the IP address of the first interface (ens3) (DO NOT USE DHCP)  
 - (firewall: 192.168.254.11, netsniff-ng: 192.168.254.12, snort-ids: 192.168.254.13)  
 - (suricata-ids: 192.168.254.14, suricata-ips: 192.168.254.15, tcpdump: 192.168.254.16, NAT: 192.168.254.17)  
-- Use 'ubuntu' as the user ID of default VMs  
+- Use 'ubuntu' for the user ID of default VMs  
 - Check 'OpenSSH server' when selecting software to install  
 
-- YOU CAN SIMPLY CREATE AND CONFIGURE ONE GENERAL VM  
+- IF YOU WANT TO SAVE YOUR TIME, YOU CAN SIMPLY CREATE AND CONFIGURE ONE GENERAL VM  
 - THEN, YOU CAN JUST CLONE AND RECONFIGURE IT FOR VNFS  
 - (e.g., change the IP address and hostname of the cloned VM)  
 
