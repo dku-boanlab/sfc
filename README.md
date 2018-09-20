@@ -18,6 +18,7 @@ $ cd setup
 $ ./kvm-install.sh  
 $ ./ovs-install.sh  
 $ sudo reboot  
+
 $ cd setup
 $ ./def-setup.sh  (change the IP space to 192.168.254.0/24)  
 $ vi ovs-setup.sh  (update the interface names for inbound/outbound traffic)  
@@ -25,8 +26,12 @@ $ ./ovs-setup.sh
 $ ./ovs-into-kvm.sh  
 $ sudo reboot
 
-2. Create VNFs  
-$ virt-manager (create Ubuntu-16.04 VMs)  
+2. Create 7 default VNFs
+$ virt-manager  
+- VNFs: firewall, netsniff-ng, snort-ids, suricata-ids, suricata-ips, tcpdump, NAT
+- Make sure that the name of new VMs are the above ones (case-sensitive)
+- Use Ubuntu 16.04  
+- Add two interfaces (attached to ovsbr0)  
 
 # Execution
 - Make a service chain  
