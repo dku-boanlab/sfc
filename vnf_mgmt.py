@@ -280,8 +280,6 @@ def stop_applications_in_VNFs(config, VNFs):
     return
 
 def get_port_from_intf(interface):
-    print interface
-
     cmd = "util/port-map.sh | grep " + interface + " | awk '{print $2}' | head -n 1"
     res = subprocess.check_output(cmd, shell=True)
     return res.rstrip()
