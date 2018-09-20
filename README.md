@@ -2,14 +2,14 @@
 - NFV platform for service chaining  
 
 # Notification
-- If you find any bugs or have some questions, please send an e-mail to us.  
+- If you find any bugs or have some questions, please send an e-mail to me.  
 
 # Configuration
-- The configuration of the system: config/global.conf  
+- The configuration of the platform: config/global.conf  
 - The configurations of VNFs: config/vnf.conf  
 
 # Test environment
-- The current Probius is fully tested on Ubuntu 16.04.  
+- The current platform is fully tested on Ubuntu 16.04.  
 - It may work on other Linux platforms if its dependency issues are solved.  
 
 # Installation
