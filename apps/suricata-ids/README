@@ -9,8 +9,8 @@ $ sudo vi /etc/sudoers
 	[YourID] ALL=NOPASSWD:ALL
 
 $ sudo vi /etc/network/interfaces
-	auto eth1
-	iface eth1 inet manual
+	auto ens4
+	iface ens4 inet manual
 
 $ sudo reboot  
 

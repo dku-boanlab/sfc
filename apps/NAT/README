@@ -7,11 +7,11 @@ $ sudo vi /etc/sudoers
 	[YourID] ALL=NOPASSWD:ALL
 
 $ sudo vi /etc/network/interfaces
-	auto eth1
-	iface eth1 inet manual
+	auto ens4
+	iface ens4 inet manual
 
-	auto eth2
-	iface eth2 inet manual
+	auto ens5
+	iface ens5 inet manual
 
 $ sudo vi /etc/sysctl.conf
 	uncomment the following line
