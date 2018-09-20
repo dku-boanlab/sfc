@@ -19,8 +19,8 @@ $ ./kvm-install.sh
 $ ./ovs-install.sh  
 $ sudo reboot  
 
-2. Configure the KVM environment
-$ cd setup
+2. Configure the KVM environment  
+$ cd setup  
 $ ./def-setup.sh  (change the IP space to 192.168.254.0/24)  
 $ vi ovs-setup.sh  (update the interface names for inbound/outbound traffic)  
 $ ./ovs-setup.sh  
@@ -30,7 +30,7 @@ $ sudo reboot
 3. Create seven VMs  
 $ virt-manager  
 - VNFs: firewall, netsniff-ng, snort-ids, suricata-ids, suricata-ips, tcpdump, NAT
-- Make sure that the name of new VMs are the above ones (case-sensitive)
+- Make sure that the name of new VMs are the same with the above ones (case-sensitive)
 - Use Ubuntu 16.04  
 - Add two interfaces (attached to ovsbr0)  
 - Statically Set the IP address of the first interface (ens3)
