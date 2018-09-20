@@ -27,7 +27,10 @@ $ ./ovs-setup.sh
 $ ./ovs-into-kvm.sh  
 $ sudo reboot
 
-3. Create seven VMs  
+3. Configure the interfaces for inbound/outbound traffic  
+$ vi config/global.conf  
+
+4. Create seven VMs  
 $ virt-manager  
 - VNFs: firewall, netsniff-ng, snort-ids, suricata-ids, suricata-ips, tcpdump, NAT
 - Make sure that the name of new VMs are the same with the above ones (case-sensitive)
@@ -37,7 +40,7 @@ $ virt-manager
 - (firewall: 192.168.254.11, netsniff-ng: 192.168.254.12, snort-ids: 192.168.254.13)  
 - (suricata-ids: 192.168.254.14, suricata-ips: 192.168.254.15, tcpdump: 192.168.254.16, NAT: 192.168.254.17)  
 
-4. Install VNF applications (run the following commands in VMs)  
+5. Install VNF applications (run the following commands in VMs)  
 $ git clone https://github.com/sdx4u/sfc  
 $ ln -s sfc/apps/[VM name] [VM name]  
 $ cd [VM name]  
