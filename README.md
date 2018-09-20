@@ -42,7 +42,7 @@ $ git clone https://github.com/sdx4u/sfc
 $ ln -s sfc/apps/[VM name] [VM name]  
 $ cd [VM name]  
 $ ./setup.sh  
-- follow the instruction in the README file  
+- Follow the instructions in the README file  
 
 # Execution
 - Make a service chain  
