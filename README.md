@@ -12,7 +12,7 @@
 - The current Probius is fully tested on Ubuntu 16.04.  
 - It may work on other Linux platforms if its dependency issues are solved.  
 
-# Compilation
+# Installation
 1. Set up a KVM environment  
 $ cd setup   
 $ ./kvm-install.sh  
@@ -27,12 +27,17 @@ $ ./ovs-setup.sh
 $ ./ovs-into-kvm.sh  
 $ sudo reboot
 
-3. Create 7 default VNFs
+3. Create seven VMs  
 $ virt-manager  
 - VNFs: firewall, netsniff-ng, snort-ids, suricata-ids, suricata-ips, tcpdump, NAT
 - Make sure that the name of new VMs are the above ones (case-sensitive)
 - Use Ubuntu 16.04  
 - Add two interfaces (attached to ovsbr0)  
+
+4. Install VNF applications (run the following commands in VMs)  
+$ git clone https://github.com/sdx4u/sfc  
+$ ln -s sfc/apps/[VM name] [VM name]  
+- follow the instruction in the README file  
 
 # Execution
 - Make a service chain  
