@@ -14,7 +14,7 @@
 
 # Installation
 1. Set up a KVM environment  
-$ cd setup   
+$ cd setup  
 $ ./kvm-install.sh  
 $ ./ovs-install.sh  
 $ sudo reboot  
@@ -25,20 +25,28 @@ $ ./def-setup.sh  (change the IP space to 192.168.254.0/24)
 $ vi ovs-setup.sh  (update the interface names for inbound/outbound traffic)  
 $ ./ovs-setup.sh  
 $ ./ovs-into-kvm.sh  
-$ sudo reboot
+$ ./download-ubuntu.sh  
+$ sudo reboot  
 
 3. Configure the interfaces for inbound/outbound traffic  
 $ vi config/global.conf  
 
 4. Create seven VMs  
 $ virt-manager  
-- VNFs: firewall, netsniff-ng, snort-ids, suricata-ids, suricata-ips, tcpdump, NAT
-- Make sure that the name of new VMs are the same with the above ones (case-sensitive)
-- Use Ubuntu 16.04  
-- Add two interfaces (attached to ovsbr0)  
-- Statically set the IP address of the first interface (ens3)
+- VNFs: firewall, netsniff-ng, snort-ids, suricata-ids, suricata-ips, tcpdump, NAT  
+- Make sure that the NAMEs of new VMs are the same with the above ones (case-sensitive)  
+- Use Ubuntu 16.04 (image/ubuntu-16.04.2-server-amd64.iso)  
+- Select 'NAT' network for the default interface  
+- Check 'customize configuration before ' and add two interfaces (Network source: ovsbr0)  
+- During installation, statically set the IP address of the first interface (ens3) (DO NOT USE DHCP)  
 - (firewall: 192.168.254.11, netsniff-ng: 192.168.254.12, snort-ids: 192.168.254.13)  
 - (suricata-ids: 192.168.254.14, suricata-ips: 192.168.254.15, tcpdump: 192.168.254.16, NAT: 192.168.254.17)  
+- ID of default VMs should be 'ubuntu'  
+- Check 'OpenSSH server' when selecting software to install  
+
+- YOU CAN SIMPLY CREATE AND CONFIGURE ONE GENERAL VM  
+- THEN, YOU CAN JUST CLONE AND RECONFIGURE IT FOR VNFS  
+- (e.g., change the IP address and hostname of the cloned VM)  
 
 5. Install VNF applications (run the following commands in VMs)  
 $ git clone https://github.com/sdx4u/sfc  

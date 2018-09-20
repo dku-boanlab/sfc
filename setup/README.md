@@ -1,6 +1,6 @@
-# KVM
+# Introduction
 
-Kernel-based Virtual Machine
+Kernel-based Virtual Machine with Open vSwitch
 
 # Instruction
 
@@ -16,4 +16,4 @@ Kernel-based Virtual Machine
 
 # Requirement
 
-Optimized for Ubuntu 14.04/16.04
+Optimized for Ubuntu 16.04
