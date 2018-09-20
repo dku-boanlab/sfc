@@ -1,0 +1,21 @@
+Suricata (IDS mode)
+
+# Installation
+
+$ ./setup.sh  
+
+$ sudo vi /etc/sudoers  
+	Add the following line at the end of the file
+	[YourID] ALL=NOPASSWD:ALL
+
+$ sudo vi /etc/network/interfaces
+	auto eth1
+	iface eth1 inet manual
+
+$ sudo reboot  
+
+# Execution
+
+./start.sh (normal mode)  
+./start.sh b (daemon mode)  
+./stop.sh

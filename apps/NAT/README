@@ -1,0 +1,20 @@
+NAT
+
+# Installation
+
+$ sudo vi /etc/sudoers
+	Add the following line at the end of the file
+	[YourID] ALL=NOPASSWD:ALL
+
+$ sudo vi /etc/network/interfaces
+	auto eth1
+	iface eth1 inet manual
+
+	auto eth2
+	iface eth2 inet manual
+
+$ sudo vi /etc/sysctl.conf
+	uncomment the following line
+	net.ipv4.ip_forward=1
+
+$ sudo reboot
