@@ -24,7 +24,6 @@ $ cd setup
 $ ./def-setup.sh  (change the IP space to 192.168.254.0/24)  
 $ vi ovs-setup.sh  (update the interface names for inbound/outbound traffic)  
 $ ./ovs-setup.sh  
-$ ./ovs-into-kvm.sh  
 $ ./download-ubuntu.sh  
 $ sudo reboot  
 

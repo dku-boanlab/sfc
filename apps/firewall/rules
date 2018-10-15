@@ -7,6 +7,5 @@
 -A INPUT -i vnet0 -j ACCEPT
 -A INPUT -p icmp -j ACCEPT
 -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
--A INPUT -p tcp -m tcp --dport 5201 -j ACCEPT
 COMMIT
 # Completed on Tue Aug 15 06:04:26 2017

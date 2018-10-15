@@ -1,7 +1,6 @@
 #!/bin/bash
 
 sudo ethtool -K ens4 gro off
-
 sudo ifconfig ens4 promisc
 
 sudo rm -rf /var/log/snort/*

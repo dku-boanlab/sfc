@@ -12,8 +12,6 @@ Kernel-based Virtual Machine with Open vSwitch
 
 4. Edit the names of inbound/outbound interfaces and run 'ovs-setup.sh'
 
-5. Run 'ovs-into-kvm.sh'
-
 # Requirement
 
 Optimized for Ubuntu 16.04

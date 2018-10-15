@@ -10,5 +10,10 @@ sudo ovs-vsctl -- set bridge ovsbr0 protocols=OpenFlow10
 sudo ovs-vsctl set-fail-mode ovsbr0 secure
 
 # add interfaces to ovsbr0
-sudo ovs-vsctl add-port ovsbr0 p6p1
-sudo ovs-vsctl add-port ovsbr0 p6p2
+sudo ovs-vsctl add-port ovsbr0 ens4
+sudo ovs-vsctl add-port ovsbr0 ens6
+
+# add ovsbr0 to KVM
+virsh net-define ovsbr0.xml
+virsh net-start ovsbr0
+virsh net-autostart ovsbr0
