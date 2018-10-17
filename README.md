@@ -65,5 +65,8 @@ $ ./sfc.py [VNF1,VNF2,VNF3,...]
 - Clean up the pre-installed service chain  
 $ ./sfc.py clean  
 
+- CAUSION!
+Please make sure that you have changed configuration files in the 'config' directory for your environment!  
+
 # Author
 - Jaehyun Nam <namjh@kaist.ac.kr>  
