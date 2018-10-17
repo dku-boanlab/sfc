@@ -1,4 +1,4 @@
 #!/bin/bash
 
 sudo apt-get update
-sudo apt-get -y install netsniff-ng
+sudo apt-get -y install netsniff-ng python

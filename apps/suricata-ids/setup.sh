@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt-get update
-sudo apt-get install build-essential -y
+sudo apt-get install build-essential python -y
 sudo apt-get install libpcre3 libpcre3-dbg libpcre3-dev build-essential libpcap-dev   \
                      libnet1-dev libyaml-0-2 libyaml-dev pkg-config zlib1g zlib1g-dev \
                      libcap-ng-dev libcap-ng0 make libmagic-dev libjansson-dev        \

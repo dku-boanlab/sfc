@@ -1,4 +1,4 @@
 #!/bin/bash
 
 sudo apt-get update
-sudo apt-get -y install tcpdump
+sudo apt-get -y install tcpdump python

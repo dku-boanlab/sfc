@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt-get update
-sudo apt-get -y install build-essential libpcap-dev libpcre3-dev libdumbnet-dev bison flex ethtool
+sudo apt-get -y install build-essential libpcap-dev libpcre3-dev libdumbnet-dev bison flex ethtool python
 
 cd snort_src
 rm -rf daq-2.0.6 nghttp2-1.17.0 snort-2.9.9.0
