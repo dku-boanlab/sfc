@@ -4,8 +4,8 @@
 
 LINE=`sudo grep -n vcpu /etc/libvirt/qemu/$1.xml | awk -F':' '{print $1}'`
 HEAD=`expr $LINE - 1`
-NEW="  <vcpu placement='static' cpuset='$2'>$3</vcpu>"
-#NEW="  <vcpu placement='static'>$3</vcpu>"
+#NEW="  <vcpu placement='static' cpuset='$2'>$3</vcpu>"
+NEW="  <vcpu placement='static'>$3</vcpu>"
 
 sudo head -n $HEAD /etc/libvirt/qemu/$1.xml > $1.xml
 
