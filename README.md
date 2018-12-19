@@ -2,7 +2,7 @@
 - NFV platform for service chaining  
 
 # Notification
-- This platform works without any SDN controllers  
+- This platform works without any SDN controllers.  
 - If you find any bugs or have some questions, please send an e-mail to me.  
 
 # Configuration
