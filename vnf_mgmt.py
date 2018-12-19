@@ -24,8 +24,8 @@ def load_VNF_configurations(conf_file):
             config[name]["inbound"] = "" # inbound physical interface
             config[name]["outbound"] = "" # outbound physical interface
 
-            config[name]["cpu"] = str(data[name]["cpu"]) # given number of CPUs
-            config[name]["mem"] = str(data[name]["mem"]) # given mem size
+            config[name]["cpu"] = str(data[name]["cpu"]) # given number of CPUs (,)
+            config[name]["mem"] = str(data[name]["mem"]) # given MEM size (,)
 
             config[name]["mgmt_ip"] = str(data[name]["mgmt_ip"]) # mgmt IP address
 
@@ -67,6 +67,7 @@ def update_VNF_configurations(config):
 
                         config[name][net_id] = intf
 
+                # net0 is considered as mgmt interface
                 config[name]["inbound"] = config[name]["net1"]
                 config[name]["outbound"] = config[name]["net2"]
 
@@ -80,6 +81,7 @@ def get_the_list_of_VNFs(config):
 
     return VNFs
 
+# From Probius code
 def make_resources_VNFs(g_config, config, VNFs):
     cpu_list = g_config["cpu"].split(',')
     mem_list = g_config["mem"].split(',')
@@ -136,6 +138,7 @@ def make_resources_VNFs(g_config, config, VNFs):
 
     return final_cpus, final_mems
 
+# From Probius code
 def get_cpuset_of_VNFs(cpu, VNFs):
     cpuset = []
 
@@ -196,16 +199,19 @@ def is_VNF_alive(mgmt_ip):
         return False
 
 def is_VNF_active(vnf):
-    res = False
+    res = -1
 
     conn = libvirt.open("qemu:///system")
     if conn == None:
         print "Error: failed to connect QEMU"
         exit(-1)
     else:
-        curr = conn.lookupByName(vnf)
-        res = curr.isActive()
-        conn.close()
+        try:
+            curr = conn.lookupByName(vnf)
+            res = curr.isActive()
+            conn.close()
+        except libvirt.libvirtError:
+            pass
 
     return res
 
@@ -238,8 +244,12 @@ def power_on_VNFs(config, VNFs):
     return
 
 def shut_down_VNFs(VNFs):
+    filtered = []
+
     for vnf in VNFs:
-        if is_VNF_active(vnf):
+        ret = is_VNF_active(vnf)
+
+        if ret > 0:
             conn = libvirt.open("qemu:///system")
             if conn == None:
                 print "Error: failed to connect QEMU"
@@ -249,7 +259,10 @@ def shut_down_VNFs(VNFs):
                 VNF.destroy()
                 conn.close()
 
-    return
+        if ret >= 0:
+            filtered.append(vnf)
+
+    return filtered
 
 def is_after_NAT(vnf, VNFs):
     ret = False

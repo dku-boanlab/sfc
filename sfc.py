@@ -40,8 +40,8 @@ VNFs = vnf_mgmt.get_the_list_of_VNFs(config)
 print "Available VNFs in the config file: ", VNFs
 
 # shut down the active VNFs
-vnf_mgmt.shut_down_VNFs(VNFs)
-print "Turned off all deployed VNFs"
+VNFs = vnf_mgmt.shut_down_VNFs(VNFs)
+print "Available VNFs in the hypervisor: ", VNFs
 
 # remove all applied flow rules
 vnf_mgmt.initialize_Open_vSwitch(g_config)

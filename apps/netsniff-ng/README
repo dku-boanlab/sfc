@@ -4,7 +4,7 @@ Netsniff-ng (Linux network analyzer and networking toolkit)
 
 $ ./setup.sh
 
-$ sudo vi /etc/sudoer
+$ sudo vi /etc/sudoers
 	Add the following line at the end of the file
 	[YourID] ALL=NOPASSWD:ALL
 
