@@ -45,7 +45,8 @@ Please make sure that you have modified configuration files in the 'config' dire
 # Test Scenario
 1. Create default VMs  
 $ virt-manager  
-- VNFs: firewall, netsniff-ng, snort-ids, suricata-ids, suricata-ips, tcpdump, NAT  
+- VNFs  
+firewall, netsniff-ng, snort-ids, suricata-ids, suricata-ips, tcpdump, NAT  
 Make sure that the NAMEs of new VMs are the same with the above ones (case-sensitive)  
 
 - VM configurations  
@@ -55,24 +56,24 @@ Check 'customize configuration before installation' and add two more interfaces 
 During installation, statically set the IP address of the first interface (ens3) (DO NOT USE DHCP)  
 (firewall: 192.168.122.11, netsniff-ng: 192.168.122.12, snort-ids: 192.168.122.13)  
 (suricata-ids: 192.168.122.14, suricata-ips: 192.168.122.15, tcpdump: 192.168.122.16, NAT: 192.168.122.17)  
-Use 'ubuntu' for the user ID of default VMs  
 Check 'OpenSSH server' when selecting software to install  
 
 - IF YOU WANT TO SAVE YOUR TIME, YOU CAN SIMPLY CREATE AND CONFIGURE ONE GENERAL VM  
-THEN, YOU CAN JUST CLONE AND RECONFIGURE IT FOR VNFS  
-Edit /etc/network/interfaces to change the pre-configured IP address  
-Edit /etc/hosts and /etc/hostname to change the hostname of the cloned VM)  
+THEN, YOU CAN JUST CLONE AND RECONFIGURE IT FOR OTHER VNFS  
+(The things that you need to do in cloned VMs might be  
+editing /etc/network/interfaces to change the pre-configured IP address and  
+editing /etc/hosts and /etc/hostname to change the hostname of the cloned VM)  
 
 2. Push SSH keys to each VM in order to log it in without password  
-$ util/push-key.sh ubuntu@[VM IP address]  
+$ util/push-key.sh [user ID]@[VM IP address]  
 (e.g., util/push-key.sh ubuntu@192.168.122.11)  
 
 3. Install VNF applications (run the following commands in each VM)  
-$ git clone https://github.com/sdx4u/sfc  
-$ ln -s sfc/apps/[VM name]  
-$ cd [VM name]  
-$ ./setup.sh  
-- Follow the instructions in the README file  
+VM $ git clone https://github.com/sdx4u/sfc  
+VM $ ln -s sfc/apps/[VM name]  
+VM $ cd [VM name]  
+VM $ ./setup.sh  
+Then, follow the instructions in the README file  
 
 4. Make service chains as follows  
 $ ./sfc.py snort-ids,NAT  
