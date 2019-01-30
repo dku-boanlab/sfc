@@ -109,21 +109,21 @@ VM $ ./default-setup.sh
 VM $ sudo reboot  
 VM $ sudo vi /etc/sudoers  
 
-> Add the following line at the end of the file  
-> ubuntu	ALL=NOPASSWD:ALL  
+	> Add the following line at the end of the file  
+	> ubuntu	ALL=NOPASSWD:ALL  
 
 VM $ sudo vi /etc/sysctl.conf  
 
-> Uncomment the following line  
-> net.ipv4.ip\_forward=1  
+	> Uncomment the following line  
+	> net.ipv4.ip\_forward=1  
 
 VM $ sudo vi /etc/network/interfaces  
 
-> Add the following lines at the end of the file  
-> auto eth1  
-> iface eth1 inet manual  
-> auto eth2  
-> iface eth2 inet manual  
+	> Add the following lines at the end of the file  
+	> auto eth1  
+	> iface eth1 inet manual  
+	> auto eth2  
+	> iface eth2 inet manual  
 
 3. Install VNF applications  
 $ ssh ubuntu@192.168.122.10  
