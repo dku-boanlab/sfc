@@ -1,8 +1,5 @@
-import os
-import time
-import json
-import psutil
-import libvirt
+import os, time, json
+import psutil, libvirt
 import subprocess
 
 def load_VNF_configurations(conf_file):
@@ -32,8 +29,14 @@ def load_VNF_configurations(conf_file):
             config[name]["start"] = str(data[name]["start"]) # application start script
             config[name]["stop"] = str(data[name]["stop"]) # application stop script
 
-            config[name]["init"] = str(data[name]["init"]) # VNF init script before/without NAT
-            config[name]["nat_init"] = str(data[name]["nat_init"]) # VNF init script after NAT
+            if "init" in data[name]:
+                config[name]["init"] = str(data[name]["init"]) # VNF init script before/without NAT
+            else:
+                config[name]["init"] = ""
+            if "nat_init" in data[name]:
+                config[name]["nat_init"] = str(data[name]["nat_init"]) # VNF init script after NAT
+            else:
+                config[name]["nat_init"] = ""
 
     return config
 
@@ -81,8 +84,7 @@ def get_the_list_of_VNFs(config):
 
     return VNFs
 
-# From Probius code
-def make_resources_VNFs(g_config, config, VNFs):
+def make_resources_of_VNFs(g_config, config, VNFs):
     cpu_list = g_config["cpu"].split(',')
     mem_list = g_config["mem"].split(',')
 
@@ -138,7 +140,6 @@ def make_resources_VNFs(g_config, config, VNFs):
 
     return final_cpus, final_mems
 
-# From Probius code
 def get_cpuset_of_VNFs(cpu, VNFs):
     cpuset = []
 
@@ -295,7 +296,7 @@ def get_port_from_intf(interface):
     res = subprocess.check_output(cmd, shell=True)
     return res.rstrip()
 
-def make_the_chain_of_VNFs(config, VNFs):
+def make_chain_of_VNFs(config, VNFs):
     rules = []
 
     vnf_cnt = 0
@@ -395,7 +396,7 @@ def initialize_Open_vSwitch(g_config):
 
     return
 
-def apply_the_chain_of_VNFs(rules):
+def apply_chain_of_VNFs(rules):
     for rule in rules:
         os.system(rule)
 

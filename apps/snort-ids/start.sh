@@ -1,12 +1,14 @@
 #!/bin/bash
 
-sudo ethtool -K ens4 gro off
-sudo ifconfig ens4 promisc
+INBOUND=eth1
+
+sudo ethtool -K $INBOUND gro off
+sudo ifconfig $INBOUND promisc
 
 sudo rm -rf /var/log/snort/*
 
 if [ -z $1 ]; then
-	sudo snort -i ens4 -c /etc/snort/snort.conf
-elif [ $1 == "b" ]; then
-	sudo snort -i ens4 -c /etc/snort/snort.conf -D
+	sudo snort -i $INBOUND -c /etc/snort/snort.conf -D
+else
+	sudo snort -i $INBOUND -c /etc/snort/snort.conf
 fi

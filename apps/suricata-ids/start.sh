@@ -1,6 +1,8 @@
 #!/bin/bash
 
-sudo ethtool -K ens4 gro off
+INBOUND=eth1
+
+sudo ethtool -K $INBOUND gro off
 
 sudo rm -f /usr/local/var/run/suricata.pid
 sudo rm -rf /usr/local/var/log/suricata/*

@@ -4,16 +4,21 @@ Firewall
 
 $ ./setup.sh
 
+$ vi start.sh
+	Update the inbound and outbound interfaces
+	INBOUND=[inbound interface]
+	OUTBOUND=[outbound interface]
+
 $ sudo vi /etc/sudoers
 	Add the following line at the end of the file
 	[YourID] ALL=NOPASSWD:ALL
 
 $ sudo vi /etc/network/interfaces
-	auto ens4
-	iface ens4 inet manual
+	auto [inbound interface]
+	iface [inbound interface] inet manual
 
-	auto ens5
-	iface ens5 inet manual
+	auto [outbound interface]
+	iface [outbound interface] inet manual
 
 $ sudo vi /etc/sysctl.conf
 	uncomment the following line

@@ -1,11 +1,9 @@
 #!/usr/bin/python
 
-import os
-import time
+import os, time
 
 os.system("/home/ubuntu/netsniff-ng/stop.sh")
 os.system("sync; sync; sync")
-time.sleep(1.0)
 
 STATS_LOG = "/home/ubuntu/stats.log"
 
@@ -29,5 +27,4 @@ if (packets + drops) == 0.0:
 else:
     print packets, 0.0, drops / (packets + drops)
 
-os.system("/home/ubuntu/netsniff-ng/start.sh b")
-time.sleep(1.0)
+os.system("/home/ubuntu/netsniff-ng/start.sh")

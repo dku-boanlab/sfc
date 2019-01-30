@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
-import os
-import math
+import os, math
 
 STATS_LOG = "/usr/local/var/log/suricata/stats.log"
 

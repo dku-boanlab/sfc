@@ -51,7 +51,7 @@ firewall, netsniff-ng, snort-ids, suricata-ids, suricata-ips, tcpdump, NAT
 Make sure that the NAMEs of new VMs are the same with the above ones (case-sensitive)  
 
 - VM configurations  
-Use Ubuntu 16.04 (image/ubuntu-16.04.2-server-amd64.iso)  
+Use Ubuntu 16.04 (~/images/ubuntu-16.04.2-server-amd64.iso)  
 Select 'NAT' network for the first (default) interface  
 Check 'customize configuration before installation' and add two more interfaces (Network source: ovsbr0)  
 During installation, statically set the IP address of the first interface (ens3) (DO NOT USE DHCP)  

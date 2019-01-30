@@ -1,10 +1,13 @@
 #!/bin/bash
 
+INBOUND=eth1
+OUTBOUND=eth2
+
 sudo iptables -F
 sudo iptables -t nat -F
 
-sudo ifconfig ens4 0.0.0.0
-sudo ifconfig ens5 0.0.0.0
+sudo ifconfig $INBOUND 0.0.0.0
+sudo ifconfig $OUTBOUND 0.0.0.0
 
-sudo ifconfig ens4 down
-sudo ifconfig ens5 down
+sudo ifconfig $INBOUND down
+sudo ifconfig $OUTBOUND down

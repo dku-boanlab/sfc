@@ -1,11 +1,10 @@
 #!/usr/bin/python
 
-import os
+import os, time
 import time
 
 os.system("/home/ubuntu/tcpdump/stop.sh")
 os.system("sync; sync; sync")
-time.sleep(1.0)
 
 STATS_LOG = "/home/ubuntu/stats.log"
 
@@ -32,5 +31,4 @@ if (received + dropped) == 0.0:
 else:
     print captured, 0.0, dropped / (received + dropped)
 
-os.system("/home/ubuntu/tcpdump/start.sh b")
-time.sleep(1.0)
+os.system("/home/ubuntu/tcpdump/start.sh")

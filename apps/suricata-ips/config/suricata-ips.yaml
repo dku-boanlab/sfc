@@ -537,7 +537,7 @@ logging:
 
 # Linux high speed capture support
 af-packet:
-  - interface: ens4
+  - interface: eth1
     # Number of receive threads. "auto" uses the number of cores
     threads: auto
     # Default clusterid. AF_PACKET will load balance packets based on flow.
@@ -611,16 +611,16 @@ af-packet:
     # copy is complete. If 'ips' is set, the packet matching a 'drop' action
     # will not be copied.
     copy-mode: ips
-    copy-iface: ens5
+    copy-iface: eth2
 
-  - interface: ens5
+  - interface: eth2
     cluster-id: 98
     threads: auto
     cluster-type: cluster_flow
     degrag: yes
     use-mmap: yes
     copy-mode: ips
-    copy-iface: ens4
+    copy-iface: eth1
 
   # Put default values here. These will be used for an interface that is not
   # in the list above.
@@ -1567,7 +1567,7 @@ capture:
 #
 netmap:
    # To specify OS endpoint add plus sign at the end (e.g. "eth0+")
- - interface: eth2
+ - interface: eth0
    # Number of receive threads. "auto" uses number of RSS queues on interface.
    #threads: auto
    # You can use the following variables to activate netmap tap or IPS mode.

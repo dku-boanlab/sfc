@@ -537,7 +537,7 @@ logging:
 
 # Linux high speed capture support
 af-packet:
-  - interface: ens4
+  - interface: eth1
     # Number of receive threads. "auto" uses the number of cores
     threads: auto
     # Default clusterid. AF_PACKET will load balance packets based on flow.
@@ -1558,7 +1558,7 @@ capture:
 #
 netmap:
    # To specify OS endpoint add plus sign at the end (e.g. "eth0+")
- - interface: eth2
+ - interface: eth0
    # Number of receive threads. "auto" uses number of RSS queues on interface.
    #threads: auto
    # You can use the following variables to activate netmap tap or IPS mode.

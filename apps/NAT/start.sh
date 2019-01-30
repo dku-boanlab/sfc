@@ -1,14 +1,14 @@
 #!/bin/bash
 
-sudo ifconfig ens4 up
-sudo ifconfig ens5 up
+INBOUND=eth1
+OUTBOUND=eth2
 
-sudo ifconfig ens4 $1 netmask $2
-sudo ifconfig ens5 $3 netmask $4
+sudo ifconfig $INBOUND up
+sudo ifconfig $OUTBOUND up
 
-sudo iptables -t nat -A POSTROUTING -o ens5 -j MASQUERADE
-sudo iptables -A FORWARD -i ens4 -o ens5 -m state --state ESTABLISHED,RELATED -j ACCEPT
-sudo iptables -A FORWARD -i ens5 -o ens4 -j ACCEPT
+sudo ifconfig $INBOUND $1 netmask $2
+sudo ifconfig $OUTBOUND $3 netmask $4
 
-sudo iptables -t nat -A PREROUTING -p tcp -i ens4 --dport 80 -j DNAT --to 192.168.20.20:80
-sudo iptables -t nat -A PREROUTING -p tcp -i ens4 --dport 5201 -j DNAT --to 192.168.20.20:5201
+sudo iptables -t nat -A POSTROUTING -o $OUTBOUND -j MASQUERADE
+sudo iptables -A FORWARD -i $INBOUND -o $OUTBOUND -m state --state ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A FORWARD -i $OUTBOUND -o $INBOUND -j ACCEPT
