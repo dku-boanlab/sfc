@@ -38,13 +38,13 @@ $ vi config/vnf.conf (modify contents for your environment)
 $ ./sfc.py [VNF1,VNF2,VNF3,...]  
 
 - Clean up the already-deployed service chain  
-$ ./sfc.py clean 
+$ ./sfc.py clean  
 
 - CAUSION!  
-Please make sure that you have modified configuration files in the 'config' directory for your environment!!! 
+Please make sure that you have modified configuration files in the 'config' directory for your environment!  
 
 # Test Scenario 1
-1. Create default VMs in manual 
+1. Create default VMs in manual  
 $ virt-manager  
 
 - VNFs  
