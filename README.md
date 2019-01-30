@@ -53,8 +53,8 @@ Make sure that the NAMEs of new VMs are the same with the above ones (case-sensi
 - VM installation  
 Use Ubuntu 16.04 (~/images/ubuntu-16.04.2-server-amd64.iso)  
 Select 'NAT' network for the first (default) interface  
-Check 'customize configuration before installation' and add two more interfaces (Network source: ovsbr0)  
-During Ubuntu installation, set the static IP address for the first interface (ens3) (DO NOT USE DHCP)  
+Check 'customize configuration before installation' and add two more interfaces (network source: ovsbr0)  
+During Ubuntu installation, set the static IP address for the first interface (DO NOT USE DHCP)  
 Check 'OpenSSH server' when selecting software to install  
 
 - VNF IP addresses defined in the default configuration file  
@@ -66,8 +66,8 @@ suricata-ips: 192.168.122.15
 tcpdump: 192.168.122.16  
 NAT: 192.168.122.17  
 
-- IF YOU WANT TO SAVE YOUR TIME, YOU CAN SIMPLY CREATE AND CONFIGURE ONE GENERAL VM,  
-AND YOU CAN JUST CLONE AND RECONFIGURE IT FOR OTHER VNFS  
+- IF YOU WANT TO SAVE YOUR TIME, YOU CAN SIMPLY CREATE AND CONFIGURE ONE GENERAL VM.  
+THEN, YOU CAN JUST CLONE AND RECONFIGURE IT FOR OTHER VNFS  
 
 2. Push SSH keys to each VM in order to log it in without password  
 $ util/push-key.sh [user ID]@[VM IP address]  
