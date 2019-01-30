@@ -107,6 +107,7 @@ VM $ cd sfc/apps
 VM $ ./update.sh  
 VM $ ./default-setup.sh  
 VM $ sudo reboot  
+
 VM $ sudo vi /etc/sudoers  
 
 	Add the following line at the end of the file  
