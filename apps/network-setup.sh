@@ -2,8 +2,10 @@
 
 if [ -z $1 ]; then
 	echo "$0 [hostname] [IP address]"
+	exit
 elif [ -z $2 ]; then
 	echo "$0 [hostname] [IP address]"
+	exit
 fi
 
 # change hostname
