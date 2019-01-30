@@ -1,8 +1,6 @@
 #!/usr/bin/python
 
-import os
-import sys
-import json
+import os, sys, json
 import vnf_mgmt
 
 def load_global_configurations(conf_file):
@@ -36,7 +34,7 @@ config = vnf_mgmt.load_VNF_configurations("config/vnf.conf")
 print "Loaded VNF configurations"
 
 # get the list of VNFs
-VNFs = vnf_mgmt.get_the_list_of_VNFs(config)
+VNFs = vnf_mgmt.get_list_of_VNFs(config)
 print "Available VNFs in the config file: ", VNFs
 
 # shut down the active VNFs

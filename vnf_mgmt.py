@@ -76,7 +76,7 @@ def update_VNF_configurations(config):
 
     return config
 
-def get_the_list_of_VNFs(config):
+def get_list_of_VNFs(config):
     VNFs = []
 
     for name in config:
