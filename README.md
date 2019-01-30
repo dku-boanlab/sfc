@@ -43,9 +43,10 @@ $ ./sfc.py clean
 - CAUSION!  
 Please make sure that you have modified configuration files in the 'config' directory for your environment!!!  
 
-# Test Scenario
-1. Create default VMs  
+# Test Scenario 1
+1. Create default VMs in manual  
 $ virt-manager  
+
 - VNFs  
 firewall, netsniff-ng, snort-ids, suricata-ids, suricata-ips, tcpdump, NAT  
 Make sure that the NAMEs of new VMs are the same with the above ones (case-sensitive)  
@@ -55,6 +56,7 @@ Use Ubuntu 16.04 (~/images/ubuntu-16.04.2-server-amd64.iso)
 Select 'NAT' network for the first (default) interface  
 Check 'customize configuration before installation' and add two more interfaces (network source: ovsbr0)  
 During Ubuntu installation, set the static IP address for the first interface (DO NOT USE DHCP)  
+Use the following ID and password (ID: ubuntu, PW: ubuntu)  
 Check 'OpenSSH server' when selecting software to install  
 
 - VNF IP addresses defined in the default configuration file  
@@ -66,15 +68,16 @@ suricata-ips: 192.168.122.15
 tcpdump: 192.168.122.16  
 NAT: 192.168.122.17  
 
-- IF YOU WANT TO SAVE YOUR TIME, YOU CAN SIMPLY CREATE AND CONFIGURE ONE GENERAL VM.  
-THEN, YOU CAN JUST CLONE AND RECONFIGURE IT FOR OTHER VNFS  
-
 2. Push SSH keys to each VM in order to log it in without password  
 $ util/push-key.sh [user ID]@[VM IP address]  
-(e.g., util/push-key.sh ubuntu@192.168.122.11)  
+> util/push-key.sh ubuntu@192.168.122.11  
 
 3. Install VNF applications (run the following commands in each VM)  
 VM $ git clone https://github.com/sdx4u/sfc  
+VM $ cd sfc/apps  
+VM $ ./update.sh  
+VM $ ./default-setup.sh  
+VM $ sudo reboot  
 VM $ ln -s sfc/apps/[VM name]  
 VM $ cd [VM name]  
 VM $ ./setup.sh  
@@ -84,6 +87,87 @@ Then, follow the instructions in the README file
 $ ./sfc.py snort-ids,NAT  
 $ ./sfc.py firewall,suricata-ips,NAT  
 $ ./sfc.py suricata-ids,netsniff-ng  
+
+# Test Scenario 2
+1. Create a general VM  
+$ virt-manager
+
+- VM installation  
+Use Ubuntu 16.04 (~/images/ubuntu-16.04.2-server-amd64.iso)  
+Select 'NAT' network for the first (default) interface  
+Check 'customize configuration before installation' and add two more interfaces (network source: ovsbr0)  
+During Ubuntu installation, set the static IP address for the first interface (192.168.122.10)  
+Use the following ID and password (ID: ubuntu, PW: ubuntu)  
+Check 'OpenSSH server' when selecting software to install  
+
+2. Set default configurations  
+$ ssh ubuntu@192.168.122.10  
+VM $ git clone https://github.com/sdx4u/sfc  
+VM $ cd sfc/apps  
+VM $ ./update.sh  
+VM $ ./default-setup.sh  
+VM $ sudo reboot  
+VM $ sudo vi /etc/sudoers  
+> Add the following line at the lined of the file  
+> ubuntu	ALL=NOPASSWD:ALL  
+VM $ sudo vi /etc/sysctl.conf  
+> Uncomment net.ipv4.ip\_forward=1  
+VM $ sudo vi /etc/network/interfaces  
+> auto eth1  
+>> iface eth1 inet manual  
+> auto eth2  
+>> iface eth2 inet manual  
+
+3. Install VNF applications
+$ ssh ubuntu@192.168.122.10  
+VM $ ln -s sfc/apps/firewall  
+VM $ cd firewall  
+VM $ ./setup.sh  
+VM $ ln -s sfc/apps/netsniff-ng  
+VM $ cd netsniff-ng  
+VM $ ./setup.sh  
+VM $ ln -s sfc/apps/snort-ids  
+VM $ cd snort-ids  
+VM $ ./setup.sh  
+VM $ ln -s sfc/apps/suricata-ids  
+VM $ cd suricata-ids  
+VM $ ./setup.sh  
+VM $ ln -s sfc/apps/suricata-ips  
+VM $ cd suricata-ips  
+VM $ sudo cp config/suricata-ips.yaml /usr/local/etc/suricata/suricata-ips.yaml  
+VM $ ln -s sfc/apps/tcpdump  
+VM $ cd tcpdump  
+VM $ ./setup.sh  
+VM $ ln -s sfc/apps/NAT  
+VM $ cd NAT  
+VM $ ./setup.sh  
+
+3. Clone the general VM for each VNF
+firewall, netsniff-ng, snort-ids, suricata-ids, suricata-ips, tcpdump, NAT  
+Make sure that the NAMEs of new VMs are the same with the above ones (case-sensitive)  
+
+4. Reconfigure cloned VMs for each VNF  
+Repeat the following commands  
+VM $ cd sfc/apps
+VM $ ./network-setup.sh [VNF] [VM IP address]  
+> ./network-setup.sh firewall 192.168.122.11  
+> ./network-setup.sh netsniff-ng 192.168.122.12  
+> ./network-setup.sh snort-ids 192.168.122.13  
+> ./network-setup.sh suricata-ids 192.168.122.14  
+> ./network-setup.sh suricata-ips 192.168.122.15  
+> ./network-setup.sh tcpdump 192.168.122.16  
+> ./network-setup.sh NAT 192.168.122.17  
+VM $ sudo reboot
+
+5. Push SSH keys to each VM in order to log it in without password  
+$ util/push-key.sh [user ID]@[VM IP address]  
+> util/push-key.sh ubuntu@192.168.122.11  
+> util/push-key.sh ubuntu@192.168.122.12  
+> util/push-key.sh ubuntu@192.168.122.13  
+> util/push-key.sh ubuntu@192.168.122.14  
+> util/push-key.sh ubuntu@192.168.122.15  
+> util/push-key.sh ubuntu@192.168.122.16  
+> util/push-key.sh ubuntu@192.168.122.17  
 
 # Author
 - Jaehyun Nam <namjh@kaist.ac.kr>  

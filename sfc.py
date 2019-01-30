@@ -84,11 +84,11 @@ vnf_mgmt.start_applications_in_VNFs(config, chain)
 print "Executed applications in VNFs"
 
 # generate flow rules
-rules = vnf_mgmt.make_the_chain_of_VNFs(config, chain)
+rules = vnf_mgmt.make_chain_of_VNFs(config, chain)
 print "Made flow rules for the chain of VNFs"
 
 # add the flow rules
-vnf_mgmt.apply_the_chain_of_VNFs(rules)
+vnf_mgmt.apply_chain_of_VNFs(rules)
 print "Applied the flow rules for the chain"
 
 print "ALL DONE!"
