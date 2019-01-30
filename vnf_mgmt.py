@@ -33,6 +33,7 @@ def load_VNF_configurations(conf_file):
                 config[name]["init"] = str(data[name]["init"]) # VNF init script before/without NAT
             else:
                 config[name]["init"] = ""
+
             if "nat_init" in data[name]:
                 config[name]["nat_init"] = str(data[name]["nat_init"]) # VNF init script after NAT
             else:
