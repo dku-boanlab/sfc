@@ -156,10 +156,10 @@ Make sure that the NAMEs of new VMs are the same with the above ones (case-sensi
 
 4. Reconfigure cloned VMs for each VNF  
 Repeat the following commands  
-VM $ cd sfc/apps
+VM $ cd sfc/apps  
 VM $ ./network-setup.sh [VNF] [VM IP address]  
 (e.g., ./network-setup.sh firewall 192.168.122.11)  
-VM $ sudo reboot
+VM $ sudo reboot  
 
 5. Push SSH keys to each VM in order to log it in without password  
 $ util/push-key.sh [user ID]@[VM IP address]  
