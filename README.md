@@ -37,10 +37,10 @@ $ vi config/vnf.conf (modify contents for your environment)
 - Make a service chain  
 $ ./sfc.py [VNF1,VNF2,VNF3,...]  
 
-- Clean up the already-deployed service chain 
+- Clean up the already-deployed service chain  
 $ ./sfc.py clean 
 
-- CAUSION! 
+- CAUSION!  
 Please make sure that you have modified configuration files in the 'config' directory for your environment!!! 
 
 # Test Scenario 1
@@ -160,8 +160,7 @@ VM $ ./setup.sh
 firewall, netsniff-ng, snort-ids, suricata-ids, suricata-ips, tcpdump, NAT  
 Make sure that the NAMEs of new VMs are the same with the above ones (case-sensitive)  
 
-4. Reconfigure cloned VMs for each VNF  
-Repeat the following commands  
+4. Reconfigure cloned VMs for each VNF repeatedly  
 $ ssh ubuntu@192.168.122.10  
 VM $ cd sfc/apps  
 VM $ ./network-setup.sh [VNF] [VM IP address]  
