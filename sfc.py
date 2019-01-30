@@ -60,7 +60,7 @@ chain = list_VNFs.split(",")
 print "Service chain: ", chain
 
 # make the resources of VNFs
-cpus, mems = vnf_mgmt.make_resources_VNFs(g_config, config, chain)
+cpus, mems = vnf_mgmt.make_resources_of_VNFs(g_config, config, chain)
 
 # get cpuset of VNFs
 cpuset = vnf_mgmt.get_cpuset_of_VNFs(cpus[0], chain)

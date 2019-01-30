@@ -19,6 +19,6 @@ $ sudo reboot
 
 # Execution
 
-./start.sh (normal mode)  
-./start.sh b (daemon mode)  
+./start.sh (daemon mode)  
+./start.sh x (normal mode)  
 ./stop.sh
