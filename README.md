@@ -70,7 +70,7 @@ NAT: 192.168.122.17
 
 2. Push SSH keys to each VM in order to log it in without password  
 $ util/push-key.sh [user ID]@[VM IP address]  
-> util/push-key.sh ubuntu@192.168.122.11  
+(e.g., util/push-key.sh ubuntu@192.168.122.11)  
 
 3. Install VNF applications (run the following commands in each VM)  
 VM $ git clone https://github.com/sdx4u/sfc  
@@ -108,15 +108,17 @@ VM $ ./update.sh
 VM $ ./default-setup.sh  
 VM $ sudo reboot  
 VM $ sudo vi /etc/sudoers  
-> Add the following line at the lined of the file  
-> ubuntu	ALL=NOPASSWD:ALL  
+Add the following line at the end of the file  
+ubuntu	ALL=NOPASSWD:ALL  
 VM $ sudo vi /etc/sysctl.conf  
-> Uncomment net.ipv4.ip\_forward=1  
+Uncomment the following line  
+net.ipv4.ip\_forward=1  
 VM $ sudo vi /etc/network/interfaces  
-> auto eth1  
->> iface eth1 inet manual  
-> auto eth2  
->> iface eth2 inet manual  
+Add the following lines at the end of the file  
+auto eth1  
+iface eth1 inet manual  
+auto eth2  
+iface eth2 inet manual  
 
 3. Install VNF applications
 $ ssh ubuntu@192.168.122.10  
@@ -150,24 +152,24 @@ Make sure that the NAMEs of new VMs are the same with the above ones (case-sensi
 Repeat the following commands  
 VM $ cd sfc/apps
 VM $ ./network-setup.sh [VNF] [VM IP address]  
-> ./network-setup.sh firewall 192.168.122.11  
-> ./network-setup.sh netsniff-ng 192.168.122.12  
-> ./network-setup.sh snort-ids 192.168.122.13  
-> ./network-setup.sh suricata-ids 192.168.122.14  
-> ./network-setup.sh suricata-ips 192.168.122.15  
-> ./network-setup.sh tcpdump 192.168.122.16  
-> ./network-setup.sh NAT 192.168.122.17  
+./network-setup.sh firewall 192.168.122.11  
+./network-setup.sh netsniff-ng 192.168.122.12  
+./network-setup.sh snort-ids 192.168.122.13  
+./network-setup.sh suricata-ids 192.168.122.14  
+./network-setup.sh suricata-ips 192.168.122.15  
+./network-setup.sh tcpdump 192.168.122.16  
+./network-setup.sh NAT 192.168.122.17  
 VM $ sudo reboot
 
 5. Push SSH keys to each VM in order to log it in without password  
 $ util/push-key.sh [user ID]@[VM IP address]  
-> util/push-key.sh ubuntu@192.168.122.11  
-> util/push-key.sh ubuntu@192.168.122.12  
-> util/push-key.sh ubuntu@192.168.122.13  
-> util/push-key.sh ubuntu@192.168.122.14  
-> util/push-key.sh ubuntu@192.168.122.15  
-> util/push-key.sh ubuntu@192.168.122.16  
-> util/push-key.sh ubuntu@192.168.122.17  
+util/push-key.sh ubuntu@192.168.122.11  
+util/push-key.sh ubuntu@192.168.122.12  
+util/push-key.sh ubuntu@192.168.122.13  
+util/push-key.sh ubuntu@192.168.122.14  
+util/push-key.sh ubuntu@192.168.122.15  
+util/push-key.sh ubuntu@192.168.122.16  
+util/push-key.sh ubuntu@192.168.122.17  
 
 # Author
 - Jaehyun Nam <namjh@kaist.ac.kr>  
