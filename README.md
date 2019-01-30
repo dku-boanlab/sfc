@@ -57,7 +57,7 @@ Check 'customize configuration before installation' and add two more interfaces 
 During Ubuntu installation, set the static IP address for the first interface (ens3) (DO NOT USE DHCP)  
 Check 'OpenSSH server' when selecting software to install  
 
-- VNF IP addresses defined in the default configuration file
+- VNF IP addresses defined in the default configuration file  
 firewall: 192.168.122.11  
 netsniff-ng: 192.168.122.12  
 snort-ids: 192.168.122.13  
