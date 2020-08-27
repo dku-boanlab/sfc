@@ -1,5 +1,8 @@
-import os, time, json
-import psutil, libvirt
+import os
+import time
+import json
+import psutil
+import libvirt
 import subprocess
 
 def load_VNF_configurations(conf_file):
