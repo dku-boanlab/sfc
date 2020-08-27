@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
-import os, sys, json
+import os
+import sys
+import json
 import vnf_mgmt
 
 def load_global_configurations(conf_file):
