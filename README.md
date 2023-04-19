@@ -1,5 +1,5 @@
 # Introduction
-- Test Environment for Security Function Chaining    
+- Test Environment for Security Function Chaining  
 
 # Notification
 - This platform works without any SDN controllers.  
