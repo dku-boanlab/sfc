@@ -1,5 +1,5 @@
 # Introduction
-- NFV platform for service chaining  
+- Test Environment for VNF Chaining  
 
 # Notification
 - This platform works without any SDN controllers.  
